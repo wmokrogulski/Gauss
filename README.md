@@ -1,0 +1,2 @@
+# Gauss
+Projekt krzywej Gaussa
