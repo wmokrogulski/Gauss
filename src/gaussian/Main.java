@@ -5,6 +5,10 @@
  */
 package gaussian;
 
+import java.awt.BorderLayout;
+import java.text.NumberFormat;
+import javax.swing.JPanel;
+
 /**
  *
  * @author mokro
@@ -34,12 +38,14 @@ public class Main extends javax.swing.JFrame {
         draw = new javax.swing.JButton();
         save = new javax.swing.JButton();
         clear = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        drawPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("μ");
+
+        expectedValue.setText("0");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("σ²");
@@ -68,8 +74,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        drawPanel.setBackground(new java.awt.Color(204, 204, 204));
+        drawPanel.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,7 +84,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -100,7 +106,7 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(drawPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -120,6 +126,20 @@ public class Main extends javax.swing.JFrame {
 
     private void drawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drawActionPerformed
         // TODO add your handling code here:
+        try {
+            Data.expectedValue = Double.parseDouble(expectedValue.getText());
+            Data.variance = Double.parseDouble(variance.getText());
+            if (Data.expectedValue <= 0) {throw new NumberFormatException();}
+            if (Data.variance <= 0) {throw new NumberFormatException();}
+            drawPanel.removeAll();
+            drawPanel.setLayout(new BorderLayout());
+            JPanel dp = DrawPanel.createWoPanel();
+            drawPanel.add(dp, BorderLayout.CENTER);
+            drawPanel.validate();
+        } catch (NumberFormatException  e) {
+            
+        } catch (NullPointerException e) {
+        }
     }//GEN-LAST:event_drawActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
@@ -128,6 +148,9 @@ public class Main extends javax.swing.JFrame {
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         // TODO add your handling code here:
+        drawPanel.removeAll();
+        expectedValue.setText("0");
+        variance.setText("1");
     }//GEN-LAST:event_clearActionPerformed
 
     /**
@@ -168,10 +191,10 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clear;
     private javax.swing.JButton draw;
+    private javax.swing.JPanel drawPanel;
     private javax.swing.JTextField expectedValue;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton save;
     private javax.swing.JTextField variance;
     // End of variables declaration//GEN-END:variables

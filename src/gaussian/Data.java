@@ -10,5 +10,5 @@ package gaussian;
  * @author mokro
  */
 public class Data {
-    
+    protected static double expectedValue, variance;
 }
