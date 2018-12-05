@@ -7,7 +7,7 @@ package gaussian;
 
 /**
  *
- * @author Arek
+ * @author mokro
  */
 public class DrawPanel {
     
