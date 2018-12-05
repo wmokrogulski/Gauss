@@ -163,6 +163,7 @@ public class Main extends javax.swing.JFrame {
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         // TODO add your handling code here:
         expectedValue.setText("0");
+        DrawPanel.myChart=null;
         variance.setText("1");
         drawPanel.removeAll();
         repaint();

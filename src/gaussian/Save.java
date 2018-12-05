@@ -15,6 +15,8 @@ import static org.jfree.chart.ChartUtilities.saveChartAsJPEG;
 public class Save {
     public static void saveChart() throws IOException{
         File file=new File("chart.jpeg");
-        saveChartAsJPEG(file, DrawPanel.myChart, 450, 200);
+        if(DrawPanel.myChart!=null){
+            saveChartAsJPEG(file, DrawPanel.myChart, 776, 350);
+        }
     }
 }
