@@ -6,7 +6,10 @@
 package gaussian;
 
 import java.awt.BorderLayout;
+import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -149,7 +152,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_drawActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Save.saveChart();
+        } catch (IOException e) {
+            System.err.println("IOException");
+        }
     }//GEN-LAST:event_saveActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed

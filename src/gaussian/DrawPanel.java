@@ -23,6 +23,7 @@ import org.jfree.data.xy.XYSeriesCollection;
  * @author mokro
  */
 public class DrawPanel {
+    public static JFreeChart myChart;
     private static JFreeChart createChart(XYDataset dataset)
     {
         JFreeChart chart = ChartFactory.createXYLineChart(
@@ -64,7 +65,7 @@ public class DrawPanel {
     }
     
     public static JPanel createWoPanel() {
-        JFreeChart chart = createChart(createDataset());
-        return new ChartPanel(chart);
+        myChart = createChart(createDataset());
+        return new ChartPanel(myChart);
     }
 }

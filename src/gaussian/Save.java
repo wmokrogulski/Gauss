@@ -5,10 +5,16 @@
  */
 package gaussian;
 
+import java.io.File;
+import java.io.IOException;
+import static org.jfree.chart.ChartUtilities.saveChartAsJPEG;
 /**
  *
  * @author Arek
  */
 public class Save {
-    
+    public static void saveChart() throws IOException{
+        File file=new File("chart.jpeg");
+        saveChartAsJPEG(file, DrawPanel.myChart, 450, 200);
+    }
 }
