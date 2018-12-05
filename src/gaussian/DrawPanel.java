@@ -46,7 +46,18 @@ public class DrawPanel {
     private static XYDataset createDataset() 
     {
         XYSeries g = new XYSeries("Krzywa Gaussa");
-        //g.add(x,y);
+        double x,y;
+        double step=0.01;
+        double range=7/step;
+//        if(Data.variance>=1){
+//            range*=Data.variance;
+//        }
+        range*=Math.sqrt(Data.variance);
+        for(int i=0; i<=range; i++){
+            x=-range/2*step+Data.expectedValue+i*step;
+            y=1/Math.sqrt(2*Math.PI*Data.variance)*Math.exp(-Math.pow(x-Data.expectedValue, 2)/(2*Data.variance));
+            g.add(x,y);
+        }
         XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(g);
         return dataset;

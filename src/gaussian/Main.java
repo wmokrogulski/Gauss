@@ -45,10 +45,14 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("μ");
 
+        expectedValue.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         expectedValue.setText("0");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("σ²");
+
+        variance.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        variance.setText("1");
 
         draw.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         draw.setText("Rysuj");
@@ -108,16 +112,14 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(drawPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(variance)
-                        .addComponent(jLabel2)
-                        .addComponent(draw)
-                        .addComponent(save)
-                        .addComponent(clear))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(expectedValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(variance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(draw)
+                    .addComponent(save)
+                    .addComponent(clear)
+                    .addComponent(expectedValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
 
@@ -129,7 +131,6 @@ public class Main extends javax.swing.JFrame {
         try {
             Data.expectedValue = Double.parseDouble(expectedValue.getText());
             Data.variance = Double.parseDouble(variance.getText());
-            if (Data.expectedValue <= 0) {throw new NumberFormatException();}
             if (Data.variance <= 0) {throw new NumberFormatException();}
             drawPanel.removeAll();
             drawPanel.setLayout(new BorderLayout());
@@ -137,8 +138,13 @@ public class Main extends javax.swing.JFrame {
             drawPanel.add(dp, BorderLayout.CENTER);
             drawPanel.validate();
         } catch (NumberFormatException  e) {
-            
+            System.err.println("NumberFormatException");
+            expectedValue.setText("ERROR");
+            variance.setText("ERROR");
         } catch (NullPointerException e) {
+            System.err.println("NullPointerException");
+            expectedValue.setText("ERROR");
+            variance.setText("ERROR");
         }
     }//GEN-LAST:event_drawActionPerformed
 
@@ -148,9 +154,10 @@ public class Main extends javax.swing.JFrame {
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         // TODO add your handling code here:
-        drawPanel.removeAll();
         expectedValue.setText("0");
         variance.setText("1");
+        drawPanel.removeAll();
+        repaint();
     }//GEN-LAST:event_clearActionPerformed
 
     /**
