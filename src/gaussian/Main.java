@@ -7,9 +7,6 @@ package gaussian;
 
 import java.awt.BorderLayout;
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
